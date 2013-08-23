@@ -19,6 +19,7 @@ $this->Html->addCrumb('Add');
 			    'helpInline' => '<span class="label label-important">' . __('Required') . '</span>&nbsp;')
 			);
 			echo $this->BootstrapForm->input('blog_rss');
+			echo $this->Recaptcha->display(array('recaptchaOptions' => array('theme' => 'clean')));
 			?>
 			<?php echo $this->BootstrapForm->submit(__('Submit')); ?>
 		</fieldset>

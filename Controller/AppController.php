@@ -63,6 +63,7 @@ class AppController extends Controller {
 		    )
 		)
 	    ),
+	    'Recaptcha.Recaptcha',
 	    'Session',
 	    'Cookie',
 	);

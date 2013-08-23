@@ -7,3 +7,6 @@
 [submodule "Plugin/TwitterBootstrap"]
 	path = Plugin/TwitterBootstrap
 	url = git@github.com:angelxmoreno/TwitterBootstrap.git
+[submodule "Plugin/Recaptcha"]
+	path = Plugin/Recaptcha
+	url = git@github.com:angelxmoreno/recaptcha.git
