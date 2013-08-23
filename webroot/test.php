@@ -59,7 +59,11 @@ if (!defined('APP_DIR')) {
  * The following line differs from its sibling
  * /app/webroot/test.php
  */
-define('CAKE_CORE_INCLUDE_PATH', 'C:' . DS . 'Users' . DS . 'amoreno' . DS . 'www');
+//define('CAKE_CORE_INCLUDE_PATH', '');
+/**
+ * include the environment switching class
+ */
+include(ROOT . DS . APP_DIR . DS . 'Lib' . DS . 'EnvSwitcher' . DS . 'EnvSwitcher.php');
 
 /**
  * Editing below this line should not be necessary.
