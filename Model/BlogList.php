@@ -48,6 +48,9 @@ class BlogList extends AppModel {
 		'isUrl' => array(
 		    'rule' => array('url', true),
 		),
+		'isUnique' =>array(
+		    'rule' => 'isUnique'
+		),
 	    ),
 	    'blog_rss' => array(
 		'isUrl' => array(
