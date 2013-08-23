@@ -33,7 +33,7 @@ App::uses('Controller', 'Controller');
  * @link		http://book.cakephp.org/2.0/en/controllers.html#the-app-controller
  */
 class AppController extends Controller {
-
+	public $uses = array('Visitor');
 	/**
 	 * Helpers
 	 *
@@ -55,7 +55,7 @@ class AppController extends Controller {
 	    'DebugKit.Toolbar',
 	    'Auth' => array(
 		'loginRedirect' => array('admin' => false, 'plugin' => null, 'controller' => 'users', 'action' => 'dashboard'),
-		'logoutRedirect' => array('admin' => false, 'plugin' => null,'controller' => 'users', 'action' => 'login'),
+		'logoutRedirect' => array('admin' => false, 'plugin' => null, 'controller' => 'users', 'action' => 'login'),
 		'loginAction' => array('admin' => false, 'plugin' => null, 'controller' => 'users', 'action' => 'login'),
 		'authenticate' => array(
 		    'Form' => array(
@@ -83,7 +83,10 @@ class AppController extends Controller {
 		'url' => '/'
 	    ),
 	    'Blog List' => array(
-		'url' => array('admin' => false, 'plugin' => null, 'controller' => 'products', 'action' => 'index'),
+		'url' => array('admin' => false, 'plugin' => null, 'controller' => 'blog_lists', 'action' => 'index'),
+	    ),
+	    'New Blog' => array(
+		'url' => array('admin' => false, 'plugin' => null, 'controller' => 'blog_lists', 'action' => 'add'),
 	    ),
 	    'About' => array(
 		'url' => array('admin' => false, 'plugin' => null, 'controller' => 'pages', 'action' => 'display', 'about'),
@@ -107,9 +110,24 @@ class AppController extends Controller {
 	 * @return void
 	 */
 	public function beforeFilter() {
+		if (!$this->Session->check('Visitor')) {
+			$this->_buildVisitor();
+		}
 		parent::beforeFilter();
 		$this->set('navLinks', $this->navLinks);
 		$this->Auth->allow('index', 'view', 'display');
+	}
+
+	protected function _buildVisitor() {
+		$data = array();
+		$data['session'] = session_id();
+		$data['remote_host'] = gethostbyaddr($this->request->clientIp(false));
+		$data['remote_addr'] = $this->request->clientIp(false);
+		$data['http_user_agent'] = $_SERVER['HTTP_USER_AGENT'];
+		$data['http_referer'] = $this->request->referer();
+		$data['page_uri'] = $this->request->here();
+		$this->Visitor->save($data);
+		$this->Session->write('Visitor', current($this->Visitor->read()));
 	}
 
 }
