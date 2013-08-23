@@ -79,14 +79,11 @@ class AppController extends Controller {
 	 * @var array
 	 */
 	public $navLinks = array(
-	    'Home' => array(
-		'url' => '/'
+	    'New Blog' => array(
+		'url' => array('admin' => false, 'plugin' => null, 'controller' => 'blog_lists', 'action' => 'add'),
 	    ),
 	    'Blog List' => array(
 		'url' => array('admin' => false, 'plugin' => null, 'controller' => 'blog_lists', 'action' => 'index'),
-	    ),
-	    'New Blog' => array(
-		'url' => array('admin' => false, 'plugin' => null, 'controller' => 'blog_lists', 'action' => 'add'),
 	    ),
 	    'About' => array(
 		'url' => array('admin' => false, 'plugin' => null, 'controller' => 'pages', 'action' => 'display', 'about'),
