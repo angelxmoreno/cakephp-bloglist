@@ -34,6 +34,78 @@ App::uses('Controller', 'Controller');
  */
 class AppController extends Controller {
 
-	public $components = array('DebugKit.Toolbar');
+	/**
+	 * Helpers
+	 *
+	 * @var array
+	 */
+	public $helpers = array(
+	    'Session',
+	    'Html' => array('className' => 'TwitterBootstrap.BootstrapHtml'),
+	    'Form' => array('className' => 'TwitterBootstrap.BootstrapForm'),
+	    'Paginator' => array('className' => 'TwitterBootstrap.BootstrapPaginator'),
+	);
+
+	/**
+	 * Components
+	 *
+	 * @var array
+	 */
+	public $components = array(
+	    'DebugKit.Toolbar',
+	    'Auth' => array(
+		'loginRedirect' => array('admin' => false, 'plugin' => null, 'controller' => 'users', 'action' => 'dashboard'),
+		'logoutRedirect' => array('admin' => false, 'plugin' => null,'controller' => 'users', 'action' => 'login'),
+		'loginAction' => array('admin' => false, 'plugin' => null, 'controller' => 'users', 'action' => 'login'),
+		'authenticate' => array(
+		    'Form' => array(
+			'fields' => array('username' => 'email')
+		    )
+		)
+	    ),
+	    'Session',
+	    'Cookie',
+	);
+
+	/**
+	 * App Layout
+	 *
+	 * @var string
+	 */
+	public $layout = 'bootstrap_layout';
+
+	/**
+	 * Layout Nav Links
+	 * @var array
+	 */
+	public $navLinks = array(
+	    'Home' => array(
+		'url' => '/'
+	    ),
+	    'Blog List' => array(
+		'url' => array('admin' => false, 'plugin' => null, 'controller' => 'products', 'action' => 'index'),
+	    ),
+	    'About' => array(
+		'url' => array('admin' => false, 'plugin' => null, 'controller' => 'pages', 'action' => 'display', 'about'),
+	    ),
+	    'Contact' => array(
+		'url' => array('admin' => false, 'plugin' => null, 'controller' => 'pages', 'action' => 'contact'),
+	    ),
+	    'Log In' => array(
+		'url' => array('admin' => false, 'plugin' => null, 'controller' => 'users', 'action' => 'login'),
+		'auth' => false,
+	    ),
+	);
+
+	/**
+	 * beforeFilter callback
+	 *
+	 * @return void
+	 */
+	public function beforeFilter() {
+		parent::beforeFilter();
+		$this->set('navLinks', $this->navLinks);
+		$this->Auth->allow('index', 'view', 'display');
+	}
 
 }

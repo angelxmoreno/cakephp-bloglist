@@ -107,3 +107,6 @@ CakeLog::config('error', array(
 	'types' => array('warning', 'error', 'critical', 'alert', 'emergency'),
 	'file' => 'error',
 ));
+
+Configure::write('TwitterBootstrap.AppName', 'CakePHP Blog List');
+Configure::write('TwitterBootstrap.AppUrl', 'http://cakephpbloglist.phpmine.com/');
