@@ -1,3 +1,6 @@
 [submodule "Lib/EnvSwitcher"]
 	path = Lib/EnvSwitcher
 	url = git://github.com/angelxmoreno/CakePHP-Environment-Switcher.git
+[submodule "Plugin/DebugKit"]
+	path = Plugin/DebugKit
+	url = https://github.com/angelxmoreno/debug_kit
