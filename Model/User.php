@@ -1,0 +1,45 @@
+<?php
+
+App::uses('AppModel', 'Model');
+
+/**
+ * User Model
+ *
+ */
+class User extends AppModel {
+
+	public $validate = array(
+	    'username' => array(
+		'required' => array(
+		    'rule' => array('notEmpty'),
+		    'message' => 'A username is required'
+		),
+		'unique' => array(
+		    'rule' => array('isUnique'),
+		    'message' => 'That user name is already taken',
+		    'on'=>'create',
+		),
+	    ),
+	    'password' => array(
+		'required' => array(
+		    'rule' => array('notEmpty'),
+		    'message' => 'A password is required'
+		)
+	    ),
+	    'role' => array(
+		'valid' => array(
+		    'rule' => array('inList', array('admin', 'author', 'registered')),
+		    'message' => 'Please enter a valid role',
+		    'allowEmpty' => false
+		)
+	    )
+	);
+
+	public function beforeSave($options = array()) {
+		if (isset($this->data[$this->alias]['password'])) {
+			$this->data[$this->alias]['password'] = AuthComponent::password($this->data[$this->alias]['password']);
+		}
+		return true;
+	}
+
+}

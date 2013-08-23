@@ -59,7 +59,7 @@ class AppController extends Controller {
 		'loginAction' => array('admin' => false, 'plugin' => null, 'controller' => 'users', 'action' => 'login'),
 		'authenticate' => array(
 		    'Form' => array(
-			'fields' => array('username' => 'email')
+			'fields' => array('username' => 'username')
 		    )
 		)
 	    ),
@@ -94,6 +94,10 @@ class AppController extends Controller {
 	    'Log In' => array(
 		'url' => array('admin' => false, 'plugin' => null, 'controller' => 'users', 'action' => 'login'),
 		'auth' => false,
+	    ),
+	    'Log Out' => array(
+		'url' => array('admin' => false, 'plugin' => null, 'controller' => 'users', 'action' => 'logout'),
+		'auth' => true,
 	    ),
 	);
 
