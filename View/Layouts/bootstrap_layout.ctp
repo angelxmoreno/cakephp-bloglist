@@ -139,8 +139,9 @@
 		</div> <!-- /container -->
 
 		<footer>
-			<div class="container">
-				<p class="muted credit"><a href="<?= Configure::read('TwitterBootstrap.AppUrl') ?>"><?= Configure::read('TwitterBootstrap.AppName') ?></a> site created by <a href="https://www.github.com/angelxmoreno">Angel S. Moreno</a> from <a href="http://phpmine.com">PHPMine</a>.</p>
+			<div class="container muted credit">
+				<p><a href="<?= Configure::read('TwitterBootstrap.AppUrl') ?>"><?= Configure::read('TwitterBootstrap.AppName') ?></a> site created by <a href="https://www.github.com/angelxmoreno">Angel S. Moreno</a> from <a href="http://phpmine.com">PHPMine</a>.</p>
+				<p><a href="http://www.cakephp.org" target="_blank">CakePHP</a> is a registered trademark of the <a href="http://cakefoundation.org" target="_blank">Cake Software Foundation</a>.  <a href="http://phpmine.com" target="_blank">PHPMine</a> and the CakePHP Blog List are not affiliated with CakePHP or the Cake Software Foundation in any way.</p>
 			</div>
 		</footer>
 		<!-- Le javascript
