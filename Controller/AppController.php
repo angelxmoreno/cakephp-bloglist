@@ -63,7 +63,6 @@ class AppController extends Controller {
 		    )
 		)
 	    ),
-	    'Recaptcha.Recaptcha',
 	    'Session',
 	    'Cookie',
 	);
@@ -90,7 +89,7 @@ class AppController extends Controller {
 		'url' => array('admin' => false, 'plugin' => null, 'controller' => 'pages', 'action' => 'display', 'about'),
 	    ),
 	    'Contact' => array(
-		'url' => array('admin' => false, 'plugin' => null, 'controller' => 'pages', 'action' => 'contact'),
+		'url' => array('admin' => false, 'plugin' => 'contact_us', 'controller' => 'contacts', 'action' => 'message'),
 	    ),
 	    'Log In' => array(
 		'url' => array('admin' => false, 'plugin' => null, 'controller' => 'users', 'action' => 'login'),
@@ -113,7 +112,7 @@ class AppController extends Controller {
 		}
 		parent::beforeFilter();
 		$this->set('navLinks', $this->navLinks);
-		$this->Auth->allow('index', 'view', 'display');
+		$this->Auth->allow('index', 'view', 'display','message');
 	}
 
 	protected function _buildVisitor() {

@@ -10,3 +10,6 @@
 [submodule "Plugin/Recaptcha"]
 	path = Plugin/Recaptcha
 	url = git@github.com:angelxmoreno/recaptcha.git
+[submodule "Plugin/ContactUs"]
+	path = Plugin/ContactUs
+	url = git@github.com:angelxmoreno/CakePHP-ContactUs.git

@@ -113,3 +113,5 @@ Configure::write('TwitterBootstrap.AppUrl', 'http://cakephpbloglist.phpmine.com/
 
 Configure::write('Recaptcha.publicKey', 'your-public-api-key');
 Configure::write('Recaptcha.privateKey', 'your-private-api-key');
+Configure::write('ContactUs.email', '');
+Configure::write('ContactUs.emailConfig', '');

@@ -20,6 +20,9 @@ $this->Html->addCrumb('Add');
 			);
 			echo $this->BootstrapForm->input('blog_rss');
 			echo $this->Recaptcha->display(array('recaptchaOptions' => array('theme' => 'clean')));
+			if (!empty($this->validationErrors['BlogList']['recaptcha'])) {
+				echo $this->Html->tag('div', $this->validationErrors['BlogList']['recaptcha'][0], array('class' => 'alert alert-error'));
+			}
 			?>
 			<?php echo $this->BootstrapForm->submit(__('Submit')); ?>
 		</fieldset>

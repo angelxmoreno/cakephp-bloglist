@@ -10,6 +10,8 @@ App::uses('AppController', 'Controller');
  */
 class BlogListsController extends AppController {
 
+	public $components = array('Recaptcha.Recaptcha' => array('actions' => array('add')));
+
 	public function beforeFilter() {
 		parent::beforeFilter();
 		$this->Auth->allow('add');
@@ -48,14 +50,7 @@ class BlogListsController extends AppController {
 		if ($this->request->is('post')) {
 			$this->BlogList->create();
 			$this->request->data['BlogList']['visitor_id'] = $this->Session->read('Visitor.id');
-			if (!$this->Recaptcha->verify()) {
-				$this->Session->setFlash(
-					__('The %s could not be saved. '.$this->Recaptcha->error.' Please, try again.', __('blog list')), 'alert', array(
-				    'plugin' => 'TwitterBootstrap',
-				    'class' => 'alert-error'
-					)
-				);
-			} elseif ($this->BlogList->save($this->request->data)) {
+			if ($this->BlogList->save($this->request->data)) {
 				$this->Session->setFlash(
 					__('The %s has been saved', __('blog list')), 'alert', array(
 				    'plugin' => 'TwitterBootstrap',
