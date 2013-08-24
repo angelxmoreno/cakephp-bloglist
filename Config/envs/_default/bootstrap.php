@@ -109,7 +109,7 @@ CakeLog::config('error', array(
 ));
 
 Configure::write('TwitterBootstrap.AppName', 'CakePHP Blog List');
-Configure::write('TwitterBootstrap.AppUrl', 'http://cakephpbloglist.phpmine.com/');
+Configure::write('TwitterBootstrap.AppUrl', '');
 
 Configure::write('Recaptcha.publicKey', 'your-public-api-key');
 Configure::write('Recaptcha.privateKey', 'your-private-api-key');
