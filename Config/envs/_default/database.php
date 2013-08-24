@@ -9,4 +9,13 @@ class DATABASE_CONFIG {
 		'password' => '',
 		'database' => '',
 	);
+
+	public $test = array(
+		'datasource' => 'Database/Mysql',
+		'persistent' => false,
+		'host' => 'localhost',
+		'login' => '',
+		'password' => '',
+		'database' => '',
+	);
 }

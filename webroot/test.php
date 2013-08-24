@@ -64,6 +64,7 @@ if (!defined('APP_DIR')) {
  * include the environment switching class
  */
 include(ROOT . DS . APP_DIR . DS . 'Lib' . DS . 'EnvSwitcher' . DS . 'EnvSwitcher.php');
+EnvSwitcher::includeFile('cake_include.php');
 
 /**
  * Editing below this line should not be necessary.
