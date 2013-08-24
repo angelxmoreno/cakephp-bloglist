@@ -21,7 +21,7 @@ $this->Html->addCrumb('List');
 				<td><?php echo h($blogList['BlogList']['name']); ?>&nbsp;</td>
 				<td><?=$this->Html->link($blogList['BlogList']['blog_url'],$blogList['BlogList']['blog_url'],array('target'=>'_blank')); ?>&nbsp;</td>
 				<td><?=$this->Html->link($blogList['BlogList']['blog_rss'],$blogList['BlogList']['blog_rss'],array('target'=>'_blank')); ?>&nbsp;</td>
-				<td><?php echo h($blogList['BlogList']['created']); ?>&nbsp;</td>
+				<td><?=$this->Time->nice($blogList['BlogList']['created']); ?>&nbsp;</td>
 			</tr>
 		<?php endforeach; ?>
 		</table>

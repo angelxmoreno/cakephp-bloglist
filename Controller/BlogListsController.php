@@ -11,6 +11,7 @@ App::uses('AppController', 'Controller');
 class BlogListsController extends AppController {
 
 	public $components = array('Recaptcha.Recaptcha' => array('actions' => array('add')));
+	public $helpers = array('Time');
 
 	public function beforeFilter() {
 		parent::beforeFilter();
@@ -24,8 +25,8 @@ class BlogListsController extends AppController {
 	 */
 	public function index() {
 		$this->BlogList->recursive = 0;
-		$this->paginate = array('conditions'=>array('BlogList.is_active'=>true));
-		$blogLists= $this->paginate();
+		$this->paginate = array('conditions' => array('BlogList.is_active' => true));
+		$blogLists = $this->paginate();
 		$this->set('blogLists', $blogLists);
 	}
 
