@@ -44,7 +44,7 @@ class UsersController extends AppController {
 				    'class' => 'alert-success'
 					)
 				);
-				$this->redirect(array('action' => 'index'));
+				$this->redirect('/');
 			} else {
 				$this->Session->setFlash(
 					__('The %s could not be saved. Please, try again.', __('user')), 'alert', array(
