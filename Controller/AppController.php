@@ -52,7 +52,6 @@ class AppController extends Controller {
 	 * @var array
 	 */
 	public $components = array(
-	    'DebugKit.Toolbar',
 	    'Auth' => array(
 		'loginRedirect' => array('admin' => false, 'plugin' => null, 'controller' => 'users', 'action' => 'dashboard'),
 		'logoutRedirect' => array('admin' => false, 'plugin' => null, 'controller' => 'users', 'action' => 'login'),
@@ -107,6 +106,9 @@ class AppController extends Controller {
 	 * @return void
 	 */
 	public function beforeFilter() {
+		if(getenv('APP_ENV') != 'production'){
+			$this->Toolbar = $this->Components->load('DebugKit.Toolbar');
+		}
 		if (!$this->Session->check('Visitor')) {
 			$this->_buildVisitor();
 		}
