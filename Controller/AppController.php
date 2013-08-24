@@ -33,7 +33,9 @@ App::uses('Controller', 'Controller');
  * @link		http://book.cakephp.org/2.0/en/controllers.html#the-app-controller
  */
 class AppController extends Controller {
+
 	public $uses = array('Visitor');
+
 	/**
 	 * Helpers
 	 *
@@ -56,6 +58,7 @@ class AppController extends Controller {
 		'loginRedirect' => array('admin' => false, 'plugin' => null, 'controller' => 'users', 'action' => 'dashboard'),
 		'logoutRedirect' => array('admin' => false, 'plugin' => null, 'controller' => 'users', 'action' => 'login'),
 		'loginAction' => array('admin' => false, 'plugin' => null, 'controller' => 'users', 'action' => 'login'),
+		'authorize' => array('Controller'),
 		'authenticate' => array(
 		    'Form' => array(
 			'fields' => array('username' => 'username')
@@ -106,7 +109,7 @@ class AppController extends Controller {
 	 * @return void
 	 */
 	public function beforeFilter() {
-		if(getenv('APP_ENV') != 'production'){
+		if (getenv('APP_ENV') != 'production') {
 			$this->Toolbar = $this->Components->load('DebugKit.Toolbar');
 		}
 		if (!$this->Session->check('Visitor')) {
@@ -114,7 +117,7 @@ class AppController extends Controller {
 		}
 		parent::beforeFilter();
 		$this->set('navLinks', $this->navLinks);
-		$this->Auth->allow('index', 'view', 'display','message');
+		$this->Auth->allow('index', 'view', 'display', 'message');
 	}
 
 	protected function _buildVisitor() {
@@ -127,6 +130,16 @@ class AppController extends Controller {
 		$data['page_uri'] = $this->request->here();
 		$this->Visitor->save($data);
 		$this->Session->write('Visitor', current($this->Visitor->read()));
+	}
+
+	public function isAuthorized($user) {
+		// Admin can access every action
+		if (isset($user['role']) && $user['role'] === 'admin') {
+			return true;
+		}
+
+		// Default deny
+		return false;
 	}
 
 }
