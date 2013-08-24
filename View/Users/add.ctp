@@ -1,3 +1,8 @@
+<?php
+$this->Html->addCrumb('Users');
+$this->Html->addCrumb('Add');
+?>
+<h1><?php echo __('Register'); ?></h1>
 <div class="row-fluid">
 	<div class="span9">
 		<?php echo $this->BootstrapForm->create('User', array('class' => 'form-horizontal')); ?>
