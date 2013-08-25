@@ -16,3 +16,6 @@
 [submodule "CakePHP"]
 	path = CakePHP
 	url = https://github.com/cakephp/cakephp.git
+[submodule "Plugin/Mongodb"]
+	path = Plugin/Mongodb
+	url = git@github.com:angelxmoreno/cakephp-mongodb.git
