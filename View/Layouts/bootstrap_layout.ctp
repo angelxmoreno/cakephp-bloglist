@@ -3,7 +3,7 @@
 	<head>
 		<meta charset="utf-8">
 		<title>
-			<?= Configure::read('TwitterBootstrap.AppName') ?>
+			<?= Configure::read('TwitterBootstrap.AppName') ?> - 
 			<?= $title_for_layout ?>
 		</title>
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -93,6 +93,10 @@
 		<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
 		<?= $this->Html->script('bootstrap.min') ?>
 		<?= $this->fetch('script') ?>
+
+		<script type="text/javascript">var switchTo5x = true;</script>
+		<script type="text/javascript" src="http://w.sharethis.com/button/buttons.js"></script>
+		<script type="text/javascript" src="http://s.sharethis.com/loader.js"></script>
 	</head>
 
 	<body>
@@ -147,6 +151,10 @@
 		<!-- Le javascript
 	    ================================================== -->
 		<!-- Placed at the end of the document so the pages load faster -->
-
+		<script type="text/javascript">stLight.options({publisher: "149ec2ea-27b8-4334-827e-5abe2e0e33f8", doNotHash: false, doNotCopy: false, hashAddressBar: true});</script>
+		<script>
+			var options = {"publisher": "149ec2ea-27b8-4334-827e-5abe2e0e33f8", "position": "left", "ad": {"visible": false, "openDelay": 5, "closeDelay": 0}, "chicklets": {"items": ["facebook", "twitter", "googleplus", "linkedin", "pinterest", "evernote", "reddit", "digg", "delicious"]}};
+			var st_hover_widget = new sharethis.widgets.hoverbuttons(options);
+		</script>
 	</body>
 </html>
