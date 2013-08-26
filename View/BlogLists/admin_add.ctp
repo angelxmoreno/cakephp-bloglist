@@ -4,11 +4,6 @@
 			<fieldset>
 				<legend><?php echo __('Admin Add %s', __('Blog List')); ?></legend>
 				<?php
-				echo $this->BootstrapForm->input('visitor_id', array(
-					'required' => 'required',
-					'helpInline' => '<span class="label label-important">' . __('Required') . '</span>&nbsp;')
-				);
-				echo $this->BootstrapForm->input('user_id');
 				echo $this->BootstrapForm->input('name', array(
 					'required' => 'required',
 					'helpInline' => '<span class="label label-important">' . __('Required') . '</span>&nbsp;')
@@ -19,6 +14,7 @@
 				);
 				echo $this->BootstrapForm->input('blog_rss');
 				echo $this->BootstrapForm->input('is_active', array(
+					'default' => 1,
 					'required' => 'required',
 					'helpInline' => '<span class="label label-important">' . __('Required') . '</span>&nbsp;')
 				);
