@@ -8,36 +8,27 @@
 
 		<table class="table">
 			<tr>
-				<th><?php echo $this->BootstrapPaginator->sort('id');?></th>
-				<th><?php echo $this->BootstrapPaginator->sort('visitor_id');?></th>
-				<th><?php echo $this->BootstrapPaginator->sort('user_id');?></th>
 				<th><?php echo $this->BootstrapPaginator->sort('name');?></th>
 				<th><?php echo $this->BootstrapPaginator->sort('blog_url');?></th>
 				<th><?php echo $this->BootstrapPaginator->sort('blog_rss');?></th>
 				<th><?php echo $this->BootstrapPaginator->sort('is_active');?></th>
 				<th><?php echo $this->BootstrapPaginator->sort('created');?></th>
-				<th><?php echo $this->BootstrapPaginator->sort('modified');?></th>
 				<th class="actions"><?php echo __('Actions');?></th>
 			</tr>
 		<?php foreach ($blogLists as $blogList): ?>
 			<tr>
-				<td><?php echo h($blogList['BlogList']['id']); ?>&nbsp;</td>
-				<td>
-					<?php echo $this->Html->link($blogList['Visitor']['id'], array('controller' => 'visitors', 'action' => 'view', $blogList['Visitor']['id'])); ?>
-				</td>
-				<td>
-					<?php echo $this->Html->link($blogList['User']['id'], array('controller' => 'users', 'action' => 'view', $blogList['User']['id'])); ?>
-				</td>
 				<td><?php echo h($blogList['BlogList']['name']); ?>&nbsp;</td>
 				<td><?php echo h($blogList['BlogList']['blog_url']); ?>&nbsp;</td>
 				<td><?php echo h($blogList['BlogList']['blog_rss']); ?>&nbsp;</td>
-				<td><?php echo h($blogList['BlogList']['is_active']); ?>&nbsp;</td>
-				<td><?php echo h($blogList['BlogList']['created']); ?>&nbsp;</td>
-				<td><?php echo h($blogList['BlogList']['modified']); ?>&nbsp;</td>
-				<td class="actions">
-					<?php echo $this->Html->link(__('View'), array('action' => 'view', $blogList['BlogList']['id'])); ?>
-					<?php echo $this->Html->link(__('Edit'), array('action' => 'edit', $blogList['BlogList']['id'])); ?>
-					<?php echo $this->Form->postLink(__('Delete'), array('action' => 'delete', $blogList['BlogList']['id']), null, __('Are you sure you want to delete # %s?', $blogList['BlogList']['id'])); ?>
+				<td><?=($blogList['BlogList']['is_active']) ?
+					$this->Form->postLink(__('Deactivate'), array('action' => 'deactivate', $blogList['BlogList']['id']), array('class'=>'btn'), __('Are you sure you want to deactive # %s?', $blogList['BlogList']['id'])) :
+					$this->Form->postLink(__('Activate'), array('action' => 'activate', $blogList['BlogList']['id']), array('class'=>'btn'), __('Are you sure you want to activate # %s?', $blogList['BlogList']['id']))
+				?></td>
+				<td nowrap="nowrap"><?php echo $this->Time->timeAgoInWords($blogList['BlogList']['created']); ?>&nbsp;</td>
+				<td class="actions btn-group-vertical">
+					<?php echo $this->Html->link(__('View'), array('action' => 'view', $blogList['BlogList']['id']), array('class'=>'btn')); ?>
+					<?php echo $this->Html->link(__('Edit'), array('action' => 'edit', $blogList['BlogList']['id']), array('class'=>'btn')); ?>
+					<?php echo $this->Form->postLink(__('Delete'), array('action' => 'delete', $blogList['BlogList']['id']), array('class'=>'btn'), __('Are you sure you want to delete # %s?', $blogList['BlogList']['id'])); ?>
 				</td>
 			</tr>
 		<?php endforeach; ?>

@@ -51,8 +51,9 @@ class BlogListsController extends AppController {
 	 */
 	public function add() {
 		if ($this->request->is('post')) {
-			$this->BlogList->create();
 			$this->request->data['BlogList']['visitor_id'] = $this->Session->read('Visitor.id');
+			$this->request->data['BlogList']['user_id'] = ($this->Auth->user('id')) ? $this->Auth->user('id') : null;
+			$this->BlogList->create();
 			if ($this->BlogList->save($this->request->data)) {
 				$this->Session->setFlash(
 					__('The %s has been saved', __('blog list')), 'alert', array(
@@ -105,6 +106,8 @@ class BlogListsController extends AppController {
 	 */
 	public function admin_add() {
 		if ($this->request->is('post')) {
+			$this->request->data['BlogList']['visitor_id'] = $this->Session->read('Visitor.id');
+			$this->request->data['BlogList']['user_id'] = ($this->Auth->user('id')) ? $this->Auth->user('id') : null;
 			$this->BlogList->create();
 			if ($this->BlogList->save($this->request->data)) {
 				$this->Session->setFlash(
@@ -113,7 +116,7 @@ class BlogListsController extends AppController {
 				    'class' => 'alert-success'
 					)
 				);
-				$this->redirect(array('action' => 'index'));
+				unset($this->request->data);
 			} else {
 				$this->Session->setFlash(
 					__('The %s could not be saved. Please, try again.', __('blog list')), 'alert', array(
@@ -192,6 +195,61 @@ class BlogListsController extends AppController {
 			)
 		);
 		$this->redirect(array('action' => 'index'));
+	}
+
+	/**
+	 * _activate_toggle method
+	 *
+	 * @param string $id
+	 * @param boolean|int $active_state the state ( true or false)
+	 * @return void
+	 */
+	protected function _activate_toggle($id = null, $active_state = 0) {
+		if (!$this->request->is('post')) {
+			throw new MethodNotAllowedException();
+		}
+		$this->BlogList->id = $id;
+		if (!$this->BlogList->exists()) {
+			throw new NotFoundException(__('Invalid %s', __('blog list')));
+		}
+		$actionPerformed = ($active_state) ? 'The %2 has been activated' : 'The %2 has beeen deactivated';
+		if ($this->BlogList->saveField('is_active', $active_state)) {
+			$this->Session->setFlash(
+				__($actionPerformed, __('blog list')), 'alert', array(
+			    'plugin' => 'TwitterBootstrap',
+			    'class' => 'alert-success'
+				)
+			);
+		}
+		$this->Session->setFlash(
+			__('The %s could not be updated', __('blog list')), 'alert', array(
+		    'plugin' => 'TwitterBootstrap',
+		    'class' => 'alert-error'
+			)
+		);
+		$this->redirect(array('action' => 'index'));
+	}
+
+	/**
+	 * admin_activate method
+	 *
+	 * @param string $id
+	 * @return void
+	 */
+
+	public function admin_activate($id = null){
+		$this->_activate_toggle($id, $active_state = 1);
+	}
+
+	/**
+	 * admin_deactivate method
+	 *
+	 * @param string $id
+	 * @return void
+	 */
+
+	public function admin_deactivate($id = null){
+		$this->_activate_toggle($id, $active_state = 0);
 	}
 
 }
