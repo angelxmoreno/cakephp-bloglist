@@ -19,3 +19,6 @@
 [submodule "Plugin/Mongodb"]
 	path = Plugin/Mongodb
 	url = git@github.com:angelxmoreno/cakephp-mongodb.git
+[submodule "Plugin/DatabaseLog"]
+	path = Plugin/DatabaseLog
+	url = git@github.com:angelxmoreno/CakePHP-DatabaseLog.git
